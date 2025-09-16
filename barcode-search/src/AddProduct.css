@@ -1,0 +1,121 @@
+/* ===== Container & Card ===== */
+/* ===== Container & Card ===== */
+.add-product-container {
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f3f6fb;
+  padding: 10px;
+}
+
+.add-product-box {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 15px 50px;
+  width: 100%;       /* Full width */
+  max-width: 1000px; /* Increase max-width to fit all fields */
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+
+/* ===== Titles ===== */
+.add-product-title {
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: center;
+  color: #2a5298;
+  margin-bottom: 10px;
+}
+
+.add-product-subtitle {
+  font-size: 1.1rem;
+  text-align: center;
+  color: #6b7280;
+  margin-bottom: 30px;
+}
+
+/* ===== Form Grid ===== */
+.add-product-form {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 fields per row */
+  gap: 20px;
+}
+
+/* Last row full width (department select) */
+.add-product-field.department {
+  grid-column: 1 / -1;
+}
+
+/* Center the button */
+.add-product-submit {
+  grid-column: 1 / -1;
+  justify-self: center;
+  padding: 14px 30px;
+  margin-top: 10px;
+  background: linear-gradient(90deg, #1e3c72, #2a5298);
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.add-product-submit:hover {
+  background: linear-gradient(90deg, #16335c, #234a85);
+  transform: translateY(-2px);
+}
+
+/* ===== Form Fields ===== */
+.add-product-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.add-product-field label {
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #374151;
+}
+
+.add-product-field input,
+.add-product-field select {
+  padding: 12px 15px;
+  font-size: 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 12px;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.add-product-field input:focus,
+.add-product-field select:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 6px rgba(37, 99, 235, 0.3);
+}
+
+/* ===== Animations ===== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+  .add-product-box {
+    padding: 30px 20px;
+  }
+
+  .add-product-form {
+    grid-template-columns: 1fr; /* stack vertically */
+  }
+}

@@ -1,0 +1,72 @@
+/* Role Selection Page Styling */
+*{
+  margin: 0;
+  padding: 0;
+}
+.role-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  width: 100%;
+  background: linear-gradient(135deg, #4e73df, #1cc88a);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.role-box {
+  background: #ffffff; /* ✅ White background fix */
+  padding: 40px 30px;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  width: 360px;
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+.role-box h2 {
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 25px;
+  color: #333;
+}
+
+.role-btn {
+  display: block;
+  width: 100%;
+  padding: 12px 18px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.role-btn.admin {
+  background: #4e73df;
+  color: white;
+}
+
+.role-btn.user {
+  background: #1cc88a;
+  color: white;
+}
+
+.role-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0px 5px 12px rgba(0, 0, 0, 0.15);
+  opacity: 0.95;
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

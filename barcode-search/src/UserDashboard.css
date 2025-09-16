@@ -1,0 +1,172 @@
+/* ========== USER DASHBOARD CONTAINER ========== */
+.user-search-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column; 
+  align-items: center;
+  padding: 20px;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* ========== USER NAVBAR ========== */
+.user-navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1300px;
+  background: #4e73df;
+  border-radius: 12px;
+  padding: 30px 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.user-navbar h2 {
+  margin: 0;
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.user-navbar button {
+  padding: 8px 16px;
+  background: #dc2626;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.user-navbar button:hover {
+  background: #b91c1c;
+}
+
+/* ========== SEARCH BOX ========== */
+.user-search-box {
+  width: 100%;
+  max-width: 1200px;
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+.user-title {
+  text-align: center;
+  font-size: 2rem;
+  color: #2a5298;
+  margin-bottom: 10px;
+}
+
+.user-subtitle {
+  text-align: center;
+  color: #6b7280;
+  margin-bottom: 20px;
+}
+
+/* ========== SEARCH INPUT ========== */
+.user-search-input {
+  width: 100%;
+  max-width: 100%;      /* ensure it doesn't overflow */
+  padding: 12px 20px;
+  border: 2px solid #3b82f6;
+  border-radius: 50px;
+  font-size: 1rem;
+  outline: none;
+  margin-bottom: 20px;
+  box-sizing: border-box; /* include padding in width */
+}
+
+
+/* ========== SIZE BUTTONS ========== */
+.user-size-buttons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.user-size-btn {
+  padding: 8px 20px;
+  border-radius: 50px;
+  border: 1px solid #3b82f6;
+  background: white;
+  color: #3b82f6;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.user-size-btn.active {
+  background: #2563eb;
+  color: white;
+  border-color: #2563eb;
+}
+
+/* ========== PRODUCT CARDS ========== */
+.user-results {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.user-product-card {
+  background: #ffffff;
+  padding: 18px 25px;
+  border-radius: 16px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+.user-product-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 15px;
+  text-align: center;
+  margin-bottom: 8px;
+  text-transform: capitalize;
+ 
+}
+
+.user-product-row.headings {
+   font-weight: 700;
+  color: #2563eb;
+  border-bottom: 1px solid #e5e7eb;
+  padding-bottom: 6px;
+}
+
+.user-product-cell {
+  padding: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: 500;
+}
+
+.user-no-results {
+  text-align: center;
+  color: #9ca3af;
+  font-size: 1.1rem;
+  margin-top: 20px;
+}
+
+/* =================== OPEN BUTTON =================== */
+.user-open-btn {
+  padding: 6px 12px;
+  background: #1e3c72;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+}
+
+.user-open-btn:hover {
+  background: #16335c;
+}
+

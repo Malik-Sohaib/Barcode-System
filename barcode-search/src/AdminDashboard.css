@@ -1,0 +1,158 @@
+.admin-dashboard {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f8f9fc, #eef1f9);
+  display: flex;
+  flex-direction: column;
+  font-family: "Poppins", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* 🔝 Top Bar */
+.top-bar {
+  background: linear-gradient(135deg, #4e73df, #224abe);
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 35px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.15);
+}
+
+.dashboard-title {
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.nav-buttons {
+  display: flex;
+  gap: 14px;
+}
+
+/* 🔘 Navigation Buttons */
+.nav-btn {
+  background: white;
+  color: #4e73df;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.08);
+}
+
+.nav-btn:hover {
+  background: #f1f4fb;
+  transform: translateY(-2px);
+}
+
+.nav-btn.active {
+  background: linear-gradient(135deg, #1cc88a, #17a673);
+  color: white;
+  box-shadow: 0 4px 12px rgba(28, 200, 138, 0.4);
+}
+
+/* 🚪 Logout Button */
+.logout-btn {
+  background: linear-gradient(135deg, #e74a3b, #c0392b);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 8px rgba(231, 74, 59, 0.4);
+}
+
+.logout-btn:hover {
+  background: linear-gradient(135deg, #c0392b, #96281b);
+  transform: scale(1.05);
+}
+
+/* 📦 Dashboard Content */
+.dashboard-content {
+  flex: 1;
+  padding: 30px;
+}
+
+/* 👥 User List Table */
+.user-list {
+  background: white;
+  padding: 25px;
+  border-radius: 14px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+.user-list h2 {
+  margin-bottom: 15px;
+  font-size: 22px;
+  font-weight: 600;
+  color: #2e2e2e;
+  border-left: 4px solid #4e73df;
+  padding-left: 10px;
+}
+
+.user-list table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 10px;
+  margin-top: 20px;
+}
+
+.user-list th,
+.user-list td {
+  padding: 14px 12px;
+  text-align: center;
+  background: #fdfdfd;
+}
+
+.user-list th {
+  background: #f4f6f9;
+  font-weight: 700;
+  color: #333;
+  text-transform: uppercase;
+  font-size: 13px;
+  border-bottom: 2px solid #ddd;
+}
+
+.user-list tr {
+  transition: all 0.3s ease;
+}
+
+.user-list tr:hover td {
+  background: #f9fbff;
+  transform: scale(1.01);
+}
+
+/* ❌ Delete Button */
+.delete-btn {
+  background: linear-gradient(135deg, #e74a3b, #c0392b);
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.3s ease;
+  box-shadow: 0 2px 6px rgba(231, 74, 59, 0.3);
+}
+
+.delete-btn:hover {
+  background: linear-gradient(135deg, #c0392b, #96281b);
+  transform: scale(1.08);
+}
+
+/* ✨ Smooth Fade In Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

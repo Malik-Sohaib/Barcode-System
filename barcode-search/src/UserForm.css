@@ -1,0 +1,87 @@
+/* ===== Form Container ===== */
+.user-form {
+  background: white;
+  padding: 30px 25px;
+  border-radius: 15px;
+  max-width: 450px;
+  width: 100%;
+  margin: 30px auto;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* ===== Form Title ===== */
+.user-form h2 {
+  text-align: center;
+  color: #4e73df;
+  margin-bottom: 25px;
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+/* ===== Form Layout ===== */
+.user-form form {
+  display: flex;
+  flex-direction: column; /* Vertical stacking */
+  gap: 20px;              /* Space between fields */
+  width: 100%;
+}
+
+/* ===== Input & Select Styling ===== */
+.user-form input,
+.user-form select {
+  width: 100%;           /* All fields same width */
+  max-width: 100%;       /* Ensure responsive */
+  padding: 12px;
+  border: 1px solid #d1d3e2;
+  border-radius: 8px;
+  font-size: 15px;
+  outline: none;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+}
+
+.user-form input:focus,
+.user-form select:focus {
+  border-color: #4e73df;
+  box-shadow: 0 0 6px rgba(78, 115, 223, 0.3);
+}
+
+/* ===== Submit Button ===== */
+.submit-btn {
+  background: #4e73df;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+  
+  width: 200px;          /* Fixed width for button */
+  align-self: center;    /* Center horizontally */
+  text-align: center;
+}
+
+.submit-btn:hover {
+  background: #375ac2;
+}
+
+/* ===== Message ===== */
+.message {
+  margin-top: 15px;
+  text-align: center;
+  color: green;
+  font-weight: 500;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 500px) {
+  .user-form {
+    padding: 25px 20px;
+  }
+  
+  .submit-btn {
+    width: 100%;
+  }
+}

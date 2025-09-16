@@ -1,0 +1,181 @@
+/* ========== CONTAINER ========== */
+.admin-search-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.admin-search-box {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 40px 30px;
+  max-width: 1200px;
+  width: 100%;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+/* ========== TITLES ========== */
+.admin-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 10px;
+  color: #2a5298;
+}
+
+.admin-subtitle {
+  text-align: center;
+  color: #6b7280;
+  margin-bottom: 30px;
+  font-size: 1.1rem;
+}
+
+/* ========== SEARCH INPUT ========== */
+.admin-search-input {
+  width: 100%;
+  max-width: 700px;
+  border: 2px solid #3b82f6;
+  border-radius: 50px;
+  padding: 14px 20px;
+  font-size: 1rem;
+  outline: none;
+  margin: 0 auto 25px auto;
+  display: block;
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.admin-search-input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 8px rgba(37, 99, 235, 0.4);
+}
+
+/* ========== SIZE BUTTONS ========== */
+.admin-size-buttons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 25px;
+}
+
+.admin-size-btn {
+  padding: 8px 20px;
+  border-radius: 50px;
+  border: 1px solid #3b82f6;
+  background: white;
+  color: #3b82f6;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.admin-size-btn:hover {
+  background: #3b82f6;
+  color: white;
+}
+
+.admin-size-btn.active {
+  background: #2563eb;
+  color: white;
+  border-color: #2563eb;
+}
+
+/* ========== PRODUCT CARDS ========== */
+.admin-results {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.admin-product-card {
+  background: #ffffff;
+  padding: 18px 25px;
+  border-radius: 16px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.admin-product-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.12);
+}
+
+.admin-product-row {
+  display: grid;
+  grid-template-columns: 150px 200px 150px 150px 100px 100px 100px auto; /* manual columns including Action */
+  gap: 15px;
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.admin-product-row.headings {
+  font-weight: 700;
+  color: #2563eb;
+  text-transform: capitalize;
+  border-bottom: 1px solid #e5e7eb;
+  padding-bottom: 6px;
+}
+
+.admin-product-row.values {
+  font-weight: 500;
+  color: #374151;
+}
+
+.admin-product-cell {
+  padding: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ========== DELETE BUTTON ========== */
+.admin-delete-btn {
+  padding: 6px 12px;
+  background: #dc2626;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+}
+
+.admin-delete-btn:hover {
+  background: #b91c1c;
+}
+
+/* ========== NO RESULTS ========== */
+.admin-no-results {
+  text-align: center;
+  color: #9ca3af;
+  font-size: 1.1rem;
+  margin-top: 20px;
+}
+
+/* ========== ANIMATIONS ========== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 768px) {
+  .admin-search-box {
+    padding: 30px 20px;
+    max-width: 100%;
+  }
+
+  .admin-product-row {
+    grid-template-columns: 1fr; /* stacked on small screens */
+  }
+}

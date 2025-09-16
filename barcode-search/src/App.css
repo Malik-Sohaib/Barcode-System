@@ -1,0 +1,366 @@
+/* ========== GLOBAL STYLES ========== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: #f3f6fb;
+  color: #333;
+  min-height: 100vh;
+ 
+}
+
+/* ========== CONTAINER ========== */
+.app-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+}
+
+.app-box {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 40px 30px;
+  max-width: 1200px; /* 🔑 width stretch ki */
+  width: 100%;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+/* ========== TITLES ========== */
+.title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 10px;
+  color: #2a5298;
+}
+
+.subtitle {
+  text-align: center;
+  color: #6b7280;
+  margin-bottom: 30px;
+  font-size: 1.1rem;
+}
+
+/* ========== NAV LINKS ========== */
+nav {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  margin-bottom: 30px;
+}
+
+nav a {
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding: 8px 20px;
+  border-radius: 12px;
+  color: #2a5298;
+  transition: background 0.3s, color 0.3s;
+}
+
+nav a.active-link,
+nav a:hover {
+  background: #2a5298;
+  color: #ffffff;
+}
+
+/* ========== SEARCH INPUT ========== */
+.search-input {
+  width: 100%;
+  max-width: 700px;
+  border: 2px solid #3b82f6;
+  border-radius: 50px;
+  padding: 14px 20px;
+  font-size: 1rem;
+  outline: none;
+  margin: 0 auto 25px auto;
+  display: block;
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.search-input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 8px rgba(37, 99, 235, 0.4);
+}
+
+/* ========== SIZE FILTER BUTTONS ========== */
+.size-buttons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 25px;
+}
+
+.size-btn {
+  padding: 8px 20px;
+  border-radius: 50px;
+  border: 1px solid #3b82f6;
+  background: white;
+  color: #3b82f6;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.size-btn:hover {
+  background: #3b82f6;
+  color: white;
+}
+
+.size-btn.active {
+  background: #2563eb;
+  color: white;
+  border-color: #2563eb;
+}
+
+/* ========== PRODUCT CARDS WITH WIDER LAYOUT ========== */
+.results {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.product-card {
+  background: #ffffff;
+  padding: 18px 25px;
+  border-radius: 16px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  max-width: 100%; /* parent ke equal */
+}
+
+.product-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.12);
+}
+
+.product-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 15px;
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.product-row.headings {
+  font-weight: 700;
+  color: #2563eb;
+  text-transform: capitalize;
+  border-bottom: 1px solid #e5e7eb;
+  padding-bottom: 6px;
+}
+
+.product-row.values {
+  font-weight: 500;
+  color: #374151;
+}
+
+.product-cell {
+  padding: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+/* ========== DELETE BUTTON ========== */
+.delete-btn {
+  padding: 6px 12px;
+  background: #dc2626;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+}
+
+.delete-btn:hover {
+  background: #b91c1c;
+}
+
+/* ========== NO RESULTS ========== */
+.no-results {
+  text-align: center;
+  color: #9ca3af;
+  font-size: 1.1rem;
+  margin-top: 20px;
+}
+
+/* ========== FORM STYLING ========== */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  align-items: start;
+}
+
+/* Form Fields */
+.form-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-field label {
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #374151;
+}
+
+.form-field input {
+  padding: 12px 15px;
+  border: 1px solid #d1d5db;
+  border-radius: 12px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.form-field input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 6px rgba(37, 99, 235, 0.3);
+  outline: none;
+}
+/* ========== DEPARTMENT DROPDOWN ========== */
+.form-field select {
+  padding: 12px 15px;
+  border: 1px solid #d1d5db;
+  border-radius: 12px;
+  font-size: 1rem;
+  background: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.form-field select:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 6px rgba(37, 99, 235, 0.3);
+  outline: none;
+}
+
+/* Submit Button - Center Align */
+.submit-btn {
+  grid-column: 1 / -1; /* poori width le aur center align ho */
+  justify-self: center;
+  width: 250px; /* fixed width taake button sleek lage */
+  text-align: center;
+  padding: 14px;
+  background: linear-gradient(90deg, #1e3c72, #2a5298);
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.submit-btn:hover {
+  background: linear-gradient(90deg, #16335c, #234a85);
+  transform: translateY(-2px);
+}
+
+
+/* ========== ANIMATIONS ========== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 768px) {
+  .app-box {
+    padding: 30px 20px;
+    max-width: 100%;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  nav {
+    flex-direction: column;
+    gap: 15px;
+  }
+}
+
+
+/* Userform css styling */
+/* User Form Styling */
+.form-container {
+  background: #fff;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  max-width: 400px;
+  margin: 20px auto;
+  text-align: center;
+}
+
+.form-title {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.product-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form-input {
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  outline: none;
+  transition: 0.3s;
+}
+
+.form-input:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0,123,255,0.3);
+}
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+.submit-btn {
+  background: #007bff;
+  color: #fff;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: 0.3s;
+  
+}
+
+.submit-btn:hover {
+  background: #0056b3;
+  
+}
+select.form-input {
+  appearance: none;
+  background: #fff url("data:image/svg+xml;utf8,<svg fill='%23007bff' height='20' viewBox='0 0 24 24' width='20' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>") no-repeat right 10px center;
+  background-size: 15px;
+  cursor: pointer;
+}
