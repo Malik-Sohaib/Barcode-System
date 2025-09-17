@@ -4,6 +4,8 @@ import Form from "./AddProduct";
 import UserForm from "./UserForm";
 import "./AdminDashboard.css";
 
+const BASE_URL = process.env.REACT_APP_API_URL;
+
 function AdminDashboard({ onLogout }) {
   const [activePage, setActivePage] = useState("search");
   const [users, setUsers] = useState([]);
@@ -17,7 +19,7 @@ function AdminDashboard({ onLogout }) {
 
   const fetchUsers = async () => {
     try {
-      const res = await fetch("http://localhost:5000/api/users");
+      const res = await fetch(`${BASE_URL}/api/users`);
       const data = await res.json();
       setUsers(data);
     } catch (error) {
@@ -27,7 +29,7 @@ function AdminDashboard({ onLogout }) {
 
   const handleDeleteUser = async (id) => {
     try {
-      const res = await fetch(`http://localhost:5000/api/users/${id}`, {
+      const res = await fetch(`${BASE_URL}/api/users/${id}`, {
         method: "DELETE",
       });
       const data = await res.json();
@@ -75,7 +77,6 @@ function AdminDashboard({ onLogout }) {
       </div>
 
       <div className="dashboard-content">
-        {/* Search component me role="admin" pass kar diya */}
         {activePage === "search" && <Search role="admin" />}
         {activePage === "addProduct" && <Form />}
         {activePage === "addUser" && <UserForm />}

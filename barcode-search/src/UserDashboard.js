@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import "./UserDashboard.css";
 import Popup from "./Popup";
 
+// ✅ Backend URL from .env
+const BASE_URL = process.env.REACT_APP_API_URL;
+
 export default function UserDashboard({ onLogout, role, department }) {
   const [search, setSearch] = useState("");
   const [sizeFilter, setSizeFilter] = useState("");
@@ -27,7 +30,7 @@ export default function UserDashboard({ onLogout, role, department }) {
         if (role === "user" && department) params.append("department", department);
         params.append("role", role);
 
-        const res = await fetch(`http://localhost:5000/api/products?${params}`);
+        const res = await fetch(`${BASE_URL}/api/products?${params}`);
         if (!res.ok) throw new Error("Failed to fetch products");
 
         const data = await res.json();
@@ -44,7 +47,7 @@ export default function UserDashboard({ onLogout, role, department }) {
   const handleDownload = async (pdfFile) => {
     if (!pdfFile) return alert("❌ No PDF available for this product");
     try {
-      const res = await fetch(`http://localhost:5000/api/download-pdf/${pdfFile}`);
+      const res = await fetch(`${BASE_URL}/api/download-pdf/${pdfFile}`);
       if (!res.ok) throw new Error("Failed to download PDF");
 
       const blob = await res.blob();
@@ -101,45 +104,43 @@ export default function UserDashboard({ onLogout, role, department }) {
           </div>
         )}
 
-       {search.trim() && (
-  <div className="user-results">
-    {products.length > 0 ? (
-      products.map((item) => {
-        // Exclude __v, _id, pdfFile, pdfOriginalName
-        const keys = Object.keys(item).filter(
-          (k) => k !== "__v" && k !== "_id" && k !== "pdfFile" && k !== "pdfOriginalName"
-        );
-        return (
-          <div key={item._id} className="user-product-card">
-            <div className="user-product-row headings">
-              {keys.map((key) => (
-                <div key={key} className="user-product-cell heading">
-                  {key}
-                </div>
-              ))}
-            </div>
+        {search.trim() && (
+          <div className="user-results">
+            {products.length > 0 ? (
+              products.map((item) => {
+                const keys = Object.keys(item).filter(
+                  (k) => k !== "__v" && k !== "_id" && k !== "pdfFile" && k !== "pdfOriginalName"
+                );
+                return (
+                  <div key={item._id} className="user-product-card">
+                    <div className="user-product-row headings">
+                      {keys.map((key) => (
+                        <div key={key} className="user-product-cell heading">
+                          {key}
+                        </div>
+                      ))}
+                    </div>
 
-            <div className="user-product-row values">
-              {keys.map((key) => (
-                <div key={key} className="user-product-cell value">
-                  {item[key]}
-                </div>
-              ))}
-              <div className="user-product-cell value">
-                <button className="user-open-btn" onClick={() => openPopup(item)}>
-                  Open
-                </button>
-              </div>
-            </div>
+                    <div className="user-product-row values">
+                      {keys.map((key) => (
+                        <div key={key} className="user-product-cell value">
+                          {item[key]}
+                        </div>
+                      ))}
+                      <div className="user-product-cell value">
+                        <button className="user-open-btn" onClick={() => openPopup(item)}>
+                          Open
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })
+            ) : (
+              <p className="user-no-results">No products found.</p>
+            )}
           </div>
-        );
-      })
-    ) : (
-      <p className="user-no-results">No products found.</p>
-    )}
-  </div>
-)}
-
+        )}
 
         {popupProduct && (
           <Popup

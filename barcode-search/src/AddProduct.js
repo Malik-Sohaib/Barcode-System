@@ -11,8 +11,11 @@ export default function AddProduct() {
     size: "",
     pcs: "",
     department: "Bedding",
-    pdfFile: null, // ✅ New field
+    pdfFile: null, 
   });
+
+  // Backend URL from .env
+  const BASE_URL = process.env.REACT_APP_API_URL;
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
@@ -39,7 +42,7 @@ export default function AddProduct() {
         }
       });
 
-      const res = await axios.post("http://localhost:5000/api/add-product", data, {
+      const res = await axios.post(`${BASE_URL}/api/add-product`, data, {
         headers: { "Content-Type": "multipart/form-data" },
       });
 
@@ -90,8 +93,6 @@ export default function AddProduct() {
               ))}
             </select>
           </div>
-
-          {/* ✅ PDF Upload Field */}
           <div className="add-product-field pdf-upload">
             <label>Upload PDF</label>
             <input type="file" name="pdfFile" accept="application/pdf" onChange={handleChange} />

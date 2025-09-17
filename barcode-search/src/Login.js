@@ -13,12 +13,15 @@ export default function Login() {
   const [userData, setUserData] = useState(null);
   const [error, setError] = useState("");
 
+  // Backend URL from .env
+  const BASE_URL = process.env.REACT_APP_API_URL;
+
   const handleLogin = async (e) => {
     e.preventDefault();
     setError("");
 
     try {
-      const res = await axios.post("http://localhost:5000/api/login", {
+      const res = await axios.post(`${BASE_URL}/api/login`, {
         username,
         password,
       });
@@ -53,7 +56,7 @@ export default function Login() {
       return (
         <UserDashboard
           onLogout={handleLogout}
-          department={userData.category} // ✅ category prop
+          department={userData.category} 
           role={userData.role}
         />
       );

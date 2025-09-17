@@ -7,11 +7,14 @@ function UserForm() {
   const [category, setCategory] = useState("Apparel");
   const [message, setMessage] = useState("");
 
+  // ✅ Backend URL from .env
+  const BASE_URL = process.env.REACT_APP_API_URL;
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const res = await fetch("http://localhost:5000/api/users", {
+      const res = await fetch(`${BASE_URL}/api/users`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

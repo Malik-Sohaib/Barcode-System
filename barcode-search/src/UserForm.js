@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import './UserForm.css'
 
+// ✅ Backend URL from .env
+const BASE_URL = process.env.REACT_APP_API_URL;
+
 export default function UserForm() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -11,7 +14,7 @@ export default function UserForm() {
     const newUser = { username, password, category };
 
     try {
-      const response = await fetch("http://localhost:5000/api/users", {
+      const response = await fetch(`${BASE_URL}/api/users`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newUser),

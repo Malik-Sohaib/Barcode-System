@@ -2,12 +2,14 @@ import React from "react";
 import "./Popup.css";
 import { FaTimes } from "react-icons/fa";
 
+const BASE_URL = process.env.REACT_APP_API_URL;
+
 export default function Popup({ product, onClose }) {
   if (!product) return null;
 
   // Filter keys to exclude __v, _id, pdfFile, pdfOriginalName
   const keys = Object.keys(product).filter(
-    (k) => k !== "__v" && k !== "_id" && k !== "pdfFile" && k !== "pdfOriginalName"
+    (k) => !["__v", "_id", "pdfFile", "pdfOriginalName"].includes(k)
   );
 
   return (
@@ -45,7 +47,7 @@ export default function Popup({ product, onClose }) {
         <div className="popup-footer">
           {product.pdfFile ? (
             <a
-              href={`http://localhost:5000/uploads/${product.pdfFile}`} // saved filename
+              href={`${BASE_URL}/uploads/${product.pdfFile}`} // saved filename
               className="popup-btn download"
               target="_blank"
               rel="noopener noreferrer"

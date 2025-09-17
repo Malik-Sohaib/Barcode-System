@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
 import "./UserList.css";
 
+// ✅ Backend URL from .env
+const BASE_URL = process.env.REACT_APP_API_URL;
+
 function UserList() {
   const [users, setUsers] = useState([]);
 
   const fetchUsers = () => {
-    fetch("http://localhost:5000/api/users")
+    fetch(`${BASE_URL}/api/users`)
       .then((res) => res.json())
       .then((data) => {
         if (data.success) {
@@ -23,7 +26,7 @@ function UserList() {
     if (!window.confirm("Are you sure you want to delete this user?")) return;
 
     try {
-      const res = await fetch(`http://localhost:5000/api/users/${id}`, {
+      const res = await fetch(`${BASE_URL}/api/users/${id}`, {
         method: "DELETE",
       });
       const data = await res.json();
