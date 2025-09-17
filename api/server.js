@@ -8,15 +8,18 @@ const fs = require("fs");
 const User = require("./user");
 
 const app = express();
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 
+// ✅ Middlewares
 app.use(cors());
 app.use(bodyParser.json());
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
+// ✅ MongoDB connection (use ENV variable on Vercel)
 mongoose
   .connect(
-    "mongodb+srv://enterpriseshilton76_db_user:Hiltonenterprises76@barcode-db.dqgvpiy.mongodb.net/barcode-db?retryWrites=true&w=majority&appName=barcode-db",
+    process.env.MONGO_URI ||
+      "mongodb+srv://enterpriseshilton76_db_user:Hiltonenterprises76@barcode-db.dqgvpiy.mongodb.net/barcode-db?retryWrites=true&w=majority&appName=barcode-db",
     { useNewUrlParser: true, useUnifiedTopology: true }
   )
   .then(() => {
@@ -42,6 +45,11 @@ async function createDefaultAdmin() {
   }
 }
 
+// ✅ API Routes
+app.get("/", (req, res) => {
+  res.json({ success: true, message: "✅ API is working!" });
+});
+
 // Login
 app.post("/api/login", async (req, res) => {
   const { username, password } = req.body;
@@ -65,7 +73,7 @@ app.post("/api/login", async (req, res) => {
   }
 });
 
-// Create User (Admin can create new users)
+// Create User
 app.post("/api/users", async (req, res) => {
   try {
     const { username, password, category } = req.body;
@@ -76,13 +84,14 @@ app.post("/api/users", async (req, res) => {
 
     let role;
     if (category === "Export Office") role = "export";
-    else if (["Apparel", "Bedding", "Socks", "Safety and PPE"].includes(category)) role = "user";
-
+    else if (["Apparel", "Bedding", "Socks", "Safety and PPE"].includes(category))
+      role = "user";
     else if (category === "admin") role = "admin";
     else return res.status(400).json({ success: false, message: "❌ Invalid category" });
 
     const existingUser = await User.findOne({ username });
-    if (existingUser) return res.status(400).json({ success: false, message: "❌ Username already exists" });
+    if (existingUser)
+      return res.status(400).json({ success: false, message: "❌ Username already exists" });
 
     const newUser = new User({ username, password, role, category });
     await newUser.save();
@@ -116,7 +125,7 @@ app.delete("/api/users/:id", async (req, res) => {
   }
 });
 
-// PRODUCT MANAGEMENT – PDF Handling Updated
+// Product management
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     const uploadDir = path.join(__dirname, "uploads");
@@ -124,7 +133,6 @@ const storage = multer.diskStorage({
     cb(null, uploadDir);
   },
   filename: function (req, file, cb) {
-    // ✅ Unique name: timestamp + original filename
     const uniqueName = Date.now() + "-" + file.originalname;
     cb(null, uniqueName);
   },
@@ -140,7 +148,7 @@ const productSchema = new mongoose.Schema({
   pcs: { type: String, required: true },
   department: { type: String, required: true },
   pdfFile: { type: String },
-  pdfOriginalName: { type: String }, // ✅ store original filename
+  pdfOriginalName: { type: String },
 });
 const Product = mongoose.model("Product", productSchema);
 
@@ -149,8 +157,8 @@ app.post("/api/add-product", upload.single("pdfFile"), async (req, res) => {
   try {
     const productData = { ...req.body };
     if (req.file) {
-      productData.pdfFile = req.file.filename;       // saved file name
-      productData.pdfOriginalName = req.file.originalname; // original name
+      productData.pdfFile = req.file.filename;
+      productData.pdfOriginalName = req.file.originalname;
     }
     const product = new Product(productData);
     await product.save();
@@ -166,19 +174,30 @@ app.get("/api/products", async (req, res) => {
   try {
     const { search, size, role, department } = req.query;
     let filter = {};
-   if ((role === "user" || role === "export") && department) {
-  filter.department = { $regex: `^${department}$`, $options: "i" };
-}
+
+    if ((role === "user" || role === "export") && department) {
+      filter.department = { $regex: `^${department}$`, $options: "i" };
+    }
 
     if (search) {
       const regex = new RegExp(search.trim(), "i");
       filter.$and = filter.$and || [];
-      filter.$and.push({ $or: [{ barcode: regex }, { itemName: regex }, { carton: regex }, { color: regex }, { size: regex }] });
+      filter.$and.push({
+        $or: [
+          { barcode: regex },
+          { itemName: regex },
+          { carton: regex },
+          { color: regex },
+          { size: regex },
+        ],
+      });
     }
+
     if (size) {
       filter.$and = filter.$and || [];
       filter.$and.push({ size: new RegExp(`^${size}$`, "i") });
     }
+
     const products = await Product.find(filter);
     res.json(products);
   } catch (err) {
@@ -187,26 +206,26 @@ app.get("/api/products", async (req, res) => {
   }
 });
 
-// Delete Product → Admin only
+// Delete Product
 app.delete("/api/product/:id", async (req, res) => {
   try {
     const { role } = req.query;
 
-    // Sirf admin delete kar sakta hai
     if (role !== "admin") {
-      return res
-        .status(403)
-        .json({ success: false, message: "❌ Only admin can delete products" });
+      return res.status(403).json({
+        success: false,
+        message: "❌ Only admin can delete products",
+      });
     }
 
     const product = await Product.findById(req.params.id);
     if (!product) {
-      return res
-        .status(404)
-        .json({ success: false, message: "❌ Product not found" });
+      return res.status(404).json({
+        success: false,
+        message: "❌ Product not found",
+      });
     }
 
-    // Agar PDF file exist karti hai to delete kar do
     if (product.pdfFile) {
       const filePath = path.join(__dirname, "uploads", product.pdfFile);
       if (fs.existsSync(filePath)) fs.unlinkSync(filePath);
@@ -216,11 +235,19 @@ app.delete("/api/product/:id", async (req, res) => {
     res.json({ success: true, message: "✅ Product deleted successfully" });
   } catch (error) {
     console.error("❌ Error deleting product:", error.message);
-    res
-      .status(500)
-      .json({ success: false, message: "Server error while deleting product." });
+    res.status(500).json({
+      success: false,
+      message: "Server error while deleting product.",
+    });
   }
 });
 
-// Start server
-app.listen(PORT, () => console.log(`✅ Server running on http://localhost:${PORT}`));
+// ✅ Export for Vercel
+module.exports = app;
+
+// ✅ Local development support
+if (require.main === module) {
+  app.listen(PORT, () =>
+    console.log(`✅ Server running locally at http://localhost:${PORT}`)
+  );
+}
