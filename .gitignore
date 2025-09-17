@@ -8,6 +8,9 @@ barcode-search/dist/
 api/dist/
 api/build/
 
+# Uploaded files (ignore uploads folder)
+uploads/
+
 # Logs
 *.log
 npm-debug.log*
